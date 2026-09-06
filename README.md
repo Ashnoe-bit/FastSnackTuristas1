@@ -41,9 +41,9 @@ Como ejecutar el proyecto
     Colocar las imagenes en el paquete Imagenes.
     Ejecutar la clase Main.
 
-Autora
+Autoras
 
-Melany - Tercero de Informatica A
+Dayanna Maldonado, Scarleth Montiel, Milena Tómala, Maily Bacusoy, Jiang Jiamei y Ashley Navarro - Tercero de Informatica A
 Analisis tecnico (preguntas del trabajo)
 1. Patron de diseno Singleton
 
