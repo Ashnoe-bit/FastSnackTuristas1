@@ -42,8 +42,8 @@ Como ejecutar el proyecto
     Ejecutar la clase Main.
 
 Autoras
-
 Dayanna Maldonado, Scarleth Montiel, Milena Tómala, Maily Bacusoy, Jiang Jiamei y Ashley Navarro - Tercero de Informatica A
+
 Analisis tecnico (preguntas del trabajo)
 1. Patron de diseno Singleton
 
