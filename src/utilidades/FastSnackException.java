@@ -16,5 +16,4 @@ public class FastSnackException extends Exception {
     public FastSnackException(String message, Throwable cause) {
         super(message, cause);
     }
-    
 }

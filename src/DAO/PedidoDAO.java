@@ -15,3 +15,4 @@ import utilidades.DAOException;
 public interface PedidoDAO {
     void guardarPedido(Pedido pedido, String nombreCliente, String telefonoCliente) throws DAOException;
 }
+

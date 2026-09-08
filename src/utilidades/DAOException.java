@@ -14,4 +14,3 @@ public class DAOException extends FastSnackException {
         super(message, cause);
     }
 }
-

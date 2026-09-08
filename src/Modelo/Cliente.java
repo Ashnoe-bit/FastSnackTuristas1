@@ -9,6 +9,7 @@ package Modelo;
  *
  * @author fl1pc08
  */
+
 public class Cliente extends Persona {
 
     private String direccion;

@@ -21,7 +21,6 @@ import java.util.List;
  * noemi
  */
 
-
 public class ClienteDAOImpl implements ClienteDAO {
     
     private Conexion conexion;
