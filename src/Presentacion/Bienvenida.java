@@ -68,15 +68,19 @@ public class Bienvenida extends javax.swing.JFrame {
         setIconImages(null);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton2.setBackground(new java.awt.Color(255, 153, 51));
+        jButton2.setFont(new java.awt.Font("Modern No. 20", 1, 14)); // NOI18N
         jButton2.setText("Registrar");
         jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.addActionListener(this::jButton2ActionPerformed);
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 160, 120));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 160, 120));
 
+        jButton1.setBackground(new java.awt.Color(255, 225, 0));
+        jButton1.setFont(new java.awt.Font("Modern No. 20", 1, 14)); // NOI18N
         jButton1.setText("Iniciar Sesión");
         jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.addActionListener(this::jButton1ActionPerformed);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 160, 120));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 160, 120));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2026-09-05 at 11.01.51 PM.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 410));
