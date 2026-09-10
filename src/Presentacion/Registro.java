@@ -91,7 +91,7 @@ public class Registro extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(153, 102, 255));
-        jLabel2.setText("RIGISTRO");
+        jLabel2.setText("REGISTRO");
         jDesktopPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
