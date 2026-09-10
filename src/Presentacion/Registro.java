@@ -119,6 +119,7 @@ public class Registro extends javax.swing.JFrame {
         jDesktopPane1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 100, 20));
 
         txtNombres.setText(" ");
+        txtNombres.addActionListener(this::txtNombresActionPerformed);
         jDesktopPane1.add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 170, -1));
 
         txtApellidos.setText(" ");
@@ -339,6 +340,10 @@ public class Registro extends javax.swing.JFrame {
         login.setVisible(true);
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombresActionPerformed
 
     /**
      * @param
