@@ -24,7 +24,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        this.setLocationRelativeTo(null); 
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
 this.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -50,7 +50,6 @@ this.addWindowListener(new java.awt.event.WindowAdapter() {
         jButton2.setBorderPainted(false);
         jButton2.setFocusPainted(false);
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        
         
         aplicarEstiloMaterial(txtUsuario);
         aplicarEstiloMaterial(txtContra);
