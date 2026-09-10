@@ -4,9 +4,12 @@
  */
 package Presentacion;
 
-import java.awt.HeadlessException;
+import DAO.UsuarioDAO;
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import utilidades.DAOException;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 /**
  *
@@ -25,8 +28,62 @@ public class Registro extends javax.swing.JFrame {
      */
     public Registro() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        aplicarEstiloMaterial(txtNombres, txtApellidos, txtCorreo, txtDireccion, txtUsuario, txtContra, txtConfirmarContra);
     }
 
+private void aplicarEstiloMaterial(JTextField txtNombres1, JTextField txtApellidos1, JTextField txtCorreo1, JTextField txtDireccion1, JTextField txtUsuario1, JPasswordField txtContra1, JPasswordField txtConfirmarContra1) {
+    // Aplicar estilo a todos los campos de texto
+    JTextField[] camposTexto = {txtNombres, txtApellidos, txtCorreo, txtDireccion, txtUsuario};
+    JPasswordField[] camposPass = {txtContra, txtConfirmarContra};
+    
+    // Color más suave para el fondo y bordes
+    Color fondoSuave = new Color(40, 40, 40);  // Gris un poco más claro
+    Color bordeSuave = new Color(100, 100, 100);  // Gris medio para el borde
+    Color bordeFocus = new Color(150, 0, 255);  // Morado suave para cuando está seleccionado
+    
+    for (JTextField campo : camposTexto) {
+        campo.setBackground(fondoSuave);
+        campo.setForeground(Color.WHITE);  // Texto blanco
+        campo.setCaretColor(Color.WHITE);  // Cursor blanco
+        campo.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, bordeSuave));
+        
+        // Efecto suave al hacer focus
+        campo.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campo.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, bordeFocus));
+            }
+            
+            @Override
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campo.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, bordeSuave));
+            }
+        });
+    }
+    
+    for (JPasswordField campo : camposPass) {
+        campo.setBackground(fondoSuave);
+        campo.setForeground(Color.WHITE);  // Texto blanco
+        campo.setCaretColor(Color.WHITE);  // Cursor blanco
+        campo.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, bordeSuave));
+        
+        // Efecto suave al hacer focus
+        campo.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campo.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, bordeFocus));
+            }
+            
+            @Override
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campo.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, bordeSuave));
+            }
+        });
+    }
+}
+    
+    
     /**
      * This
      * method
@@ -63,145 +120,113 @@ public class Registro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         txtNombres = new javax.swing.JTextField();
         txtApellidos = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
-        txtDireccion = new javax.swing.JTextField();
-        txtUsuario = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel9 = new javax.swing.JLabel();
-        txtContra = new javax.swing.JPasswordField();
-        txtConfirmarContra = new javax.swing.JPasswordField();
-        txtConfirmar = new javax.swing.JCheckBox();
         Registrar = new javax.swing.JButton();
+        txtContra = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        txtConfirmarContra = new javax.swing.JPasswordField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtDireccion = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        txtConfirmar = new javax.swing.JCheckBox();
+        txtUsuario = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jDesktopPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jLabel1.setFont(new java.awt.Font("Sylfaen", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 0, 255));
+        jLabel1.setText("Registro");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(153, 102, 255));
-        jLabel2.setText("REGISTRO");
-        jDesktopPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Nombres:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 65, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jLabel3.setText("Nombres:");
-        jDesktopPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 70, 20));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Apellidos:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 105, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jLabel4.setText("Apellidos:");
-        jDesktopPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 80, 20));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Correo:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 142, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jLabel5.setText("Correo:");
-        jDesktopPane1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 60, 20));
+        txtNombres.setToolTipText("");
+        txtNombres.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        getContentPane().add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 62, 130, -1));
 
-        jLabel6.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jLabel6.setText("Dirección:");
-        jDesktopPane1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 80, 20));
+        txtApellidos.setForeground(new java.awt.Color(255, 255, 255));
+        txtApellidos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        getContentPane().add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 102, 130, -1));
 
-        jLabel7.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jLabel7.setText("Usuario:");
-        jDesktopPane1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 60, 20));
-
-        jLabel8.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jLabel8.setText("Contraseña:");
-        jDesktopPane1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 100, 20));
-
-        txtNombres.setText(" ");
-        txtNombres.addActionListener(this::txtNombresActionPerformed);
-        jDesktopPane1.add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, 170, -1));
-
-        txtApellidos.setText(" ");
-        jDesktopPane1.add(txtApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 170, -1));
-
-        txtCorreo.setText(" ");
-        jDesktopPane1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 170, -1));
-
-        txtDireccion.setText(" ");
-        txtDireccion.addActionListener(this::txtDireccionActionPerformed);
-        jDesktopPane1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 170, -1));
-
-        txtUsuario.setText(" ");
-        jDesktopPane1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 170, -1));
-
-        jCheckBox1.setText("Mostrar contraseña");
-        jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
-        jDesktopPane1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, 150, -1));
-
-        jLabel9.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
-        jLabel9.setText("Vuelva a escribir la contraseña:");
-        jDesktopPane1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 220, 20));
-        jDesktopPane1.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 170, -1));
-        jDesktopPane1.add(txtConfirmarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 170, -1));
-
-        txtConfirmar.setText("Mostrar contraseña");
-        txtConfirmar.addActionListener(this::txtConfirmarActionPerformed);
-        jDesktopPane1.add(txtConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, -1, -1));
+        txtCorreo.setForeground(new java.awt.Color(255, 255, 255));
+        txtCorreo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 142, 130, -1));
 
         Registrar.setText("Registrar");
+        Registrar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Registrar.addActionListener(this::RegistrarActionPerformed);
-        jDesktopPane1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, -1, -1));
+        getContentPane().add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 70, 20));
+
+        txtContra.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        getContentPane().add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 262, 130, -1));
 
         jButton1.setText("Iniciar sesión");
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.addActionListener(this::jButton1ActionPerformed);
-        jDesktopPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 90, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2026-09-05 at 11.01.51 PM.jpeg"))); // NOI18N
-        jDesktopPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 440));
+        txtConfirmarContra.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        getContentPane().add(txtConfirmarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, 130, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Dirección:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 182, -1, -1));
+
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Usuario:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 225, -1, -1));
+
+        txtDireccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        getContentPane().add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 182, 130, -1));
+
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setText("Mostrar contraseña");
+        jCheckBox1.addActionListener(this::jCheckBox1ActionPerformed);
+        getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 140, -1));
+
+        txtConfirmar.setForeground(new java.awt.Color(255, 255, 255));
+        txtConfirmar.setText("Mostrar contraseña");
+        txtConfirmar.addActionListener(this::txtConfirmarActionPerformed);
+        getContentPane().add(txtConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 140, -1));
+
+        txtUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(222, 222, 130, -1));
+
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Contraseña:");
+        jLabel7.setToolTipText("");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Vuelva a escribir la contraseña");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Registro.jpg"))); // NOI18N
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 450));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionActionPerformed
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        if (jCheckBox1.isSelected()) {
-            // Si está marcado, muestra la contraseña (quita el carácter de ocultamiento)
-            txtContra.setEchoChar((char) 0);
-        } else {
-            // Si no está marcado, oculta la contraseña con asteriscos
-            txtContra.setEchoChar('*');
-            
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-    private void txtConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmarActionPerformed
-        if (txtConfirmar.isSelected()) {
-            // Si está marcado, muestra la contraseña (quita el carácter de ocultamiento)
-            txtConfirmarContra.setEchoChar((char) 0);
-        } else {
-            // Si no está marcado, oculta la contraseña con asteriscos
-            txtConfirmarContra.setEchoChar('*');
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_txtConfirmarActionPerformed
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
         // Obtener los datos de los campos
@@ -330,20 +355,44 @@ public class Registro extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Error: El usuario o correo ya existen.");
             }
-        } catch (HeadlessException | DAOException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "Error al registrar: " + e.getMessage());
-        }        // TODO add your handling code here:
+        }
+
     }//GEN-LAST:event_RegistrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
         Login login = new Login();
         login.setVisible(true);
-        this.dispose();        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txtNombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombresActionPerformed
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombresActionPerformed
+        if (jCheckBox1.isSelected()) {
+            // Si está marcado, muestra la contraseña (quita el carácter de ocultamiento)
+            txtContra.setEchoChar((char) 0);
+        } else {
+            // Si no está marcado, oculta la contraseña con asteriscos
+            txtContra.setEchoChar('*');
+        }
+
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void txtConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmarActionPerformed
+        // TODO add your handling code here:
+        if (txtConfirmar.isSelected()) {
+            // Si está marcado, muestra la contraseña (quita el carácter de ocultamiento)
+            txtConfirmarContra.setEchoChar((char) 0);
+        } else {
+            // Si no está marcado, oculta la contraseña con asteriscos
+            txtConfirmarContra.setEchoChar('*');
+        }
+
+    }//GEN-LAST:event_txtConfirmarActionPerformed
 
     /**
      * @param
@@ -354,11 +403,6 @@ public class Registro extends javax.swing.JFrame {
      * arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -369,17 +413,15 @@ public class Registro extends javax.swing.JFrame {
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Registro().setVisible(true));
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Registrar;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -398,4 +440,5 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
 }
