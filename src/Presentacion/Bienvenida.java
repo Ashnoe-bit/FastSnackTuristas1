@@ -11,6 +11,20 @@ package Presentacion;
  */
 public class Bienvenida extends javax.swing.JFrame {
     
+    private javax.swing.ImageIcon cargarImagen(String ruta, int ancho, int alto) {
+    java.awt.Image imagen = new javax.swing.ImageIcon(
+        getClass().getResource(ruta)
+    ).getImage();
+
+    imagen = imagen.getScaledInstance(
+        ancho,
+        alto,
+        java.awt.Image.SCALE_SMOOTH
+    );
+
+    return new javax.swing.ImageIcon(imagen);
+    }
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Bienvenida.class.getName());
 
     /**
@@ -21,6 +35,26 @@ public class Bienvenida extends javax.swing.JFrame {
      */
     public Bienvenida() {
         initComponents();
+        
+    this.setLocationRelativeTo(null);
+
+    logo13.setIcon(
+        cargarImagen("/imagenes/logo13.png", 280, 140)
+    );
+    
+    Usuario.setIcon(
+    cargarImagen("/imagenes/usuario.png", 70, 70)
+    );
+    
+    Regi.setIcon(
+    cargarImagen("/imagenes/registro.png", 70, 70)
+    );
+    
+    Iniciarsesion.setFocusPainted(false);
+    Iniciarsesion.setBorderPainted(true);
+
+    Registrarse.setFocusPainted(false);
+    Registrarse.setBorderPainted(true);
     }
 
     /**
@@ -59,48 +93,82 @@ public class Bienvenida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        logo13 = new javax.swing.JLabel();
+        lblBienvenido = new javax.swing.JLabel();
+        lblDescripcion = new javax.swing.JLabel();
+        Usuario = new javax.swing.JLabel();
+        Iniciarsesion = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        Regi = new javax.swing.JLabel();
+        Registrarse = new javax.swing.JButton();
+        lblFondo = new javax.swing.JLabel();
+
+        jLabel2.setText("FastSanck");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setIconImages(null);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setBackground(new java.awt.Color(255, 153, 51));
-        jButton2.setFont(new java.awt.Font("Modern No. 20", 1, 14)); // NOI18N
-        jButton2.setText("Registrar");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.addActionListener(this::jButton2ActionPerformed);
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 160, 120));
+        logo13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo13.jpeg"))); // NOI18N
+        logo13.setText("jLabel1");
+        logo13.setMaximumSize(new java.awt.Dimension(320, 200));
+        logo13.setMinimumSize(new java.awt.Dimension(320, 200));
+        logo13.setPreferredSize(new java.awt.Dimension(120, 80));
+        getContentPane().add(logo13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 120, 80));
 
-        jButton1.setBackground(new java.awt.Color(255, 225, 0));
-        jButton1.setFont(new java.awt.Font("Modern No. 20", 1, 14)); // NOI18N
-        jButton1.setText("Iniciar Sesión");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 160, 120));
+        lblBienvenido.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblBienvenido.setForeground(new java.awt.Color(51, 35, 15));
+        lblBienvenido.setText("¡Bienvenido!");
+        getContentPane().add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 230, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2026-09-05 at 11.01.51 PM.jpeg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 410));
+        lblDescripcion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        lblDescripcion.setText("Disfruta lo mejor, rápido y delicioso ♥");
+        getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 220, -1));
+
+        Usuario.setText("jLabel1");
+        getContentPane().add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 50, 30));
+
+        Iniciarsesion.setBackground(new java.awt.Color(255, 225, 0));
+        Iniciarsesion.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        Iniciarsesion.setText("Iniciar Sesión");
+        Iniciarsesion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 204), null, null));
+        Iniciarsesion.addActionListener(this::IniciarsesionActionPerformed);
+        getContentPane().add(Iniciarsesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 160, 120));
+
+        jLabel3.setText("jLabel1");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 50, 30));
+
+        Regi.setText("jLabel4");
+        getContentPane().add(Regi, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 60, 30));
+
+        Registrarse.setBackground(new java.awt.Color(255, 153, 51));
+        Registrarse.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        Registrarse.setText("Registrar");
+        Registrarse.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 102, 0), new java.awt.Color(204, 102, 0), null, null));
+        Registrarse.addActionListener(this::RegistrarseActionPerformed);
+        getContentPane().add(Registrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 160, 120));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2026-09-05 at 11.01.51 PM.jpeg"))); // NOI18N
+        getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void IniciarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarsesionActionPerformed
         // TODO add your handling code here:                
-        Presentacion.Login login = new Presentacion.Login();
-        login.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Login ventana = new Login();
+       ventana.setVisible(true);
+      this.dispose();
+    }//GEN-LAST:event_IniciarsesionActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseActionPerformed
         // TODO add your handling code here:
-        Presentacion.Producto producto = new Presentacion.Producto();
-        producto.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        Registro ventana = new Registro();
+       ventana.setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_RegistrarseActionPerformed
 
     /**
      * @param
@@ -133,8 +201,15 @@ public class Bienvenida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton Iniciarsesion;
+    private javax.swing.JLabel Regi;
+    private javax.swing.JButton Registrarse;
+    private javax.swing.JLabel Usuario;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblBienvenido;
+    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel logo13;
     // End of variables declaration//GEN-END:variables
 }
