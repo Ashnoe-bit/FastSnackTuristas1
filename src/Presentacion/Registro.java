@@ -148,7 +148,7 @@ private void aplicarEstiloMaterial(JTextField txtNombres1, JTextField txtApellid
         jLabel1.setFont(new java.awt.Font("Sylfaen", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
         jLabel1.setText("Registro");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 100, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 100, -1));
 
         jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
         jLabel2.setText("Nombres:");
@@ -179,7 +179,7 @@ private void aplicarEstiloMaterial(JTextField txtNombres1, JTextField txtApellid
 
         Registrar.setBackground(new java.awt.Color(255, 255, 153));
         Registrar.setText("Registrar");
-        Registrar.setBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(255, 51, 153)));
+        Registrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Registrar.addActionListener(this::RegistrarActionPerformed);
         getContentPane().add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 70, 20));
 
@@ -189,7 +189,7 @@ private void aplicarEstiloMaterial(JTextField txtNombres1, JTextField txtApellid
 
         jButton1.setBackground(new java.awt.Color(255, 255, 153));
         jButton1.setText("Iniciar sesión");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 153), 4));
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.addActionListener(this::jButton1ActionPerformed);
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 90, -1));
 
@@ -234,7 +234,7 @@ private void aplicarEstiloMaterial(JTextField txtNombres1, JTextField txtApellid
 
         jLabel9.setBackground(new java.awt.Color(255, 204, 204));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Registro.jpg"))); // NOI18N
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 450));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 420));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2026-09-05 at 11.01.51 PM.jpeg"))); // NOI18N
         jLabel10.setText("jLabel10");
