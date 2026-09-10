@@ -159,8 +159,8 @@ public class Bienvenida extends javax.swing.JFrame {
     private void IniciarsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarsesionActionPerformed
         // TODO add your handling code here:                
         Login ventana = new Login();
-       ventana.setVisible(true);
-      this.dispose();
+        ventana.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_IniciarsesionActionPerformed
 
     private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseActionPerformed
@@ -212,4 +212,10 @@ public class Bienvenida extends javax.swing.JFrame {
     private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel logo13;
     // End of variables declaration//GEN-END:variables
+
+    public static class setVisible {
+
+        public setVisible(boolean b) {
+        }
+    }
 }
