@@ -56,6 +56,30 @@ public class Bienvenida extends javax.swing.JFrame {
     Registrarse.setFocusPainted(false);
     Registrarse.setBorderPainted(true);
     
+    lblBienvenido.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mouseEntered(java.awt.event.MouseEvent evt) {
+        lblBienvenido.setForeground(new java.awt.Color(255, 140, 0));
+    }
+
+    @Override
+    public void mouseExited(java.awt.event.MouseEvent evt) {
+        lblBienvenido.setForeground(new java.awt.Color(51, 35, 15));
+    }
+});
+    
+   logo13.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mouseEntered(java.awt.event.MouseEvent evt) {
+        logo13.setBounds(165, 35, 150, 130);
+    }
+
+    @Override
+    public void mouseExited(java.awt.event.MouseEvent evt) {
+        logo13.setBounds(170, 40, 140, 120);
+    }
+});
+    
     Iniciarsesion.addMouseListener(new java.awt.event.MouseAdapter() {
     @Override
     public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -137,17 +161,25 @@ public class Bienvenida extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         logo13 = new javax.swing.JLabel();
         lblBienvenido = new javax.swing.JLabel();
         lblDescripcion = new javax.swing.JLabel();
         Usuario = new javax.swing.JLabel();
-        Iniciarsesion = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         Regi = new javax.swing.JLabel();
+        Iniciarsesion = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         Registrarse = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         jLabel2.setText("FastSanck");
+
+        jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -167,28 +199,42 @@ public class Bienvenida extends javax.swing.JFrame {
 
         lblDescripcion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblDescripcion.setText("Disfruta lo mejor, rápido y delicioso ♥");
-        getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 220, -1));
+        getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 220, -1));
 
         Usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/per_isnet-general-use.png"))); // NOI18N
         getContentPane().add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, 40));
 
-        Iniciarsesion.setBackground(new java.awt.Color(255, 225, 0));
-        Iniciarsesion.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
-        Iniciarsesion.setText("Iniciar Sesión");
-        Iniciarsesion.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(255, 255, 204), null, null));
-        Iniciarsesion.addActionListener(this::IniciarsesionActionPerformed);
-        getContentPane().add(Iniciarsesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 160, 120));
-
-        jLabel3.setText("jLabel1");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 50, 30));
+        jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 10)); // NOI18N
+        jLabel3.setText("¡Qué bueno verte de nuevo!");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 170, 30));
 
         Regi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/registre.png"))); // NOI18N
         getContentPane().add(Regi, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 60, 60));
 
+        Iniciarsesion.setBackground(new java.awt.Color(255, 225, 0));
+        Iniciarsesion.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        Iniciarsesion.setText("Iniciar Sesión");
+        Iniciarsesion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 0), 2));
+        Iniciarsesion.addActionListener(this::IniciarsesionActionPerformed);
+        getContentPane().add(Iniciarsesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 160, 120));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 180, -1));
+
+        jLabel4.setBackground(new java.awt.Color(255, 102, 0));
+        jLabel4.setForeground(new java.awt.Color(204, 102, 0));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 150, 10));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 180, -1));
+
+        jLabel7.setText("jLabel7");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel8.setText("¡Crea tu cuenta y disfruta!");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 160, -1));
+
         Registrarse.setBackground(new java.awt.Color(255, 153, 51));
         Registrarse.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         Registrarse.setText("Registrar");
-        Registrarse.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 102, 0), new java.awt.Color(204, 102, 0), null, null));
+        Registrarse.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 0), 2));
         Registrarse.addActionListener(this::RegistrarseActionPerformed);
         getContentPane().add(Registrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 160, 120));
 
@@ -250,8 +296,14 @@ public class Bienvenida extends javax.swing.JFrame {
     private javax.swing.JLabel Regi;
     private javax.swing.JButton Registrarse;
     private javax.swing.JLabel Usuario;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblBienvenido;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblFondo;
