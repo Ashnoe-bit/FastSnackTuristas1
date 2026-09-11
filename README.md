@@ -7,24 +7,23 @@ Tecnologias utilizadas.
 
     Lenguaje: Java
     Interfaz grafica: Swing (JFrame)
-    Base de datos: MySQL
+    Base de datos: MySQL y Aiven
     Conexion: JDBC (driver mysql-connector-j)
-    Entorno de desarrollo: NetBeans
+    Entorno de desarrollo: NetBeans vinculado con git
 
 Funcionalidades
 
-    Registro de usuarios diferenciado: el cliente puede usar cedula, RUC, pasaporte u otro; el empleado solo cedula.
-    Validacion de documentos (cedula de 10 digitos, RUC de 13 digitos).
-    Inicio de sesion con documento y contrasena.
-    Clientes: menu interactivo con imagenes, carrito de compras, calculo de subtotal, IVA (15%), envio y total, numero de pedido automatico, metodo de pago, tiempo estimado y personalizacion del pedido.
-    Empleados: panel con tres pestanas (Pedidos, Clientes e Inventario), con opcion de actualizar el stock.
+    Registro de usuarios diferenciado: el cliente debe usar su correo, colocar su nombre y apellido, crear un usuario con una contraseña.
+    Inicio de sesion con usuario y contrasena.
+    Clientes: menu interactivo con imagenes, carrito de compras, calculo de subtotal, IVA (15%), envio y total, numero de pedido automatico, metodo de pago, personalizacion del pedido.
+    Empleados: panel con dos pestanas (Factura y recibo).
     Toda la informacion de usuarios y pedidos se guarda en MySQL.
 
 Estructura del proyecto (separacion por capas)
 
     Modelo: clases de datos (Persona, Usuario, Producto, ItemPedido, Sesion, Catalogo) y la excepcion personalizada (DocumentoInvalidoException).
     BD: acceso a la base de datos (Conexion, UsuarioDAO, PedidoDAO, ProductoDAO).
-    Vista: formularios de la interfaz (FrmBienvenida, FrmRegistro, FrmLogin, FrmInicioApp, FrmMenu, FrmConfirmacion, FrmExito, FrmPanelEmpleado, Img).
+    Vista: formularios de la interfaz (FrmBienvenida, FrmRegistro, FrmLogin, FrmMenu, FrmEmpleado, FrmRecibo, FrmFactura).
 
 Conceptos tecnicos aplicados
 
