@@ -6,7 +6,6 @@
 package Presentacion;
 
 import Modelo.Pedido;
-import Modelo.ItemPedido;
 import DAO.ClienteDAOImpl;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
@@ -16,70 +15,217 @@ import utilidades.DAOException;
 
 public class Recibo extends javax.swing.JFrame {
 
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Recibo.class.getName());
+    private static final java.util.logging.Logger logger =
+            java.util.logging.Logger.getLogger(Recibo.class.getName());
 
     private Pedido pedido;
     private ClienteDAOImpl clienteDAO;
 
+    // ==========================================================
+    // CONSTRUCTOR NORMAL
+    // ==========================================================
     public Recibo() {
         initComponents();
-        this.setLocationRelativeTo(null);
+
+        setLocationRelativeTo(null);
+
+        inicializarDAO();
         verificarCliente();
-        try {
-            clienteDAO = new ClienteDAOImpl();
-        } catch (DAOException ex) {
-            logger.severe(() -> "Error al crear ClienteDAO: " + ex.getMessage());
-        }
+        colocarFecha();
     }
-    
-        public Recibo(Pedido pedido, String cliente, String cedula, String monto, String concepto) {
+
+    // ==========================================================
+    // CONSTRUCTOR QUE RECIBE DATOS DESDE FACTURA
+    // ==========================================================
+    public Recibo(Pedido pedido, String cliente, String cedula,
+                  String monto, String concepto) {
+
         this.pedido = pedido;
+
         initComponents();
-        this.setLocationRelativeTo(null);
-        cargarDatosRecibo(cliente, cedula, monto, concepto);
+
+        setLocationRelativeTo(null);
+
+        inicializarDAO();
+
+        cargarDatosRecibo(
+                cliente,
+                cedula,
+                monto,
+                concepto
+        );
+
         verificarCliente();
-        try {
-            clienteDAO = new ClienteDAOImpl();
-        } catch (DAOException ex) {
-            logger.severe(() -> "Error al crear ClienteDAO: " + ex.getMessage());
-        }
+        colocarFecha();
     }
-    
-        private void cargarDatosRecibo(String cliente, String cedula, String monto, String concepto) {
+
+    // ==========================================================
+    // CONSTRUCTOR PARA FACTURA CON TOTAL, IVA Y DESCUENTO
+    // ==========================================================
+    public Recibo(Pedido pedido,
+                  String cliente,
+                  String cedula,
+                  String totalSinIva,
+                  String iva,
+                  String descuento,
+                  String total) {
+
+        this.pedido = pedido;
+
+        initComponents();
+
+        setLocationRelativeTo(null);
+
+        inicializarDAO();
+
+        // Datos principales
         jTextFieldRecibimosDe.setText(cliente);
         jTextFieldCC.setText(cedula);
+
+        // El recibo cobra el TOTAL FINAL
+        jTextFieldMonto.setText(total);
+
+        // "La suma de"
+        jTextFieldSuma.setText(total);
+
+        // Concepto
+        jTextFieldConcepto.setText("Pago de factura");
+
+        verificarCliente();
+        colocarFecha();
+    }
+
+    // ==========================================================
+    // INICIALIZAR CONEXIÓN CON CLIENTE
+    // ==========================================================
+    private void inicializarDAO() {
+
+        try {
+
+            clienteDAO = new ClienteDAOImpl();
+
+        } catch (DAOException ex) {
+
+            clienteDAO = null;
+
+            logger.severe(
+                    "Error al crear ClienteDAO: "
+                    + ex.getMessage()
+            );
+        }
+    }
+
+    // ==========================================================
+    // CARGAR DATOS DEL RECIBO
+    // ==========================================================
+    private void cargarDatosRecibo(String cliente,
+                                   String cedula,
+                                   String monto,
+                                   String concepto) {
+
+        jTextFieldRecibimosDe.setText(cliente);
+        jTextFieldCC.setText(cedula);
+
         jTextFieldMonto.setText(monto);
+        jTextFieldSuma.setText(monto);
+
         jTextFieldConcepto.setText(concepto);
     }
 
+    // ==========================================================
+    // COLOCAR FECHA AUTOMÁTICAMENTE
+    // ==========================================================
+    private void colocarFecha() {
+
+        java.time.LocalDate fecha =
+                java.time.LocalDate.now();
+
+        jTextFieldDia.setText(
+                String.valueOf(fecha.getDayOfMonth())
+        );
+
+        jTextFieldMes.setText(
+                String.valueOf(fecha.getMonthValue())
+        );
+
+        jTextFieldAno.setText(
+                String.valueOf(fecha.getYear())
+        );
+    }
+
+    // ==========================================================
+    // BUSCAR CLIENTE POR CÉDULA
+    // ==========================================================
     private void verificarCliente() {
-        jTextFieldCC.getDocument().addDocumentListener(new DocumentListener() {
+
+        jTextFieldCC.getDocument().addDocumentListener(
+                new DocumentListener() {
+
             @Override
-            public void insertUpdate(DocumentEvent e) { buscarCliente(); }
+            public void insertUpdate(DocumentEvent e) {
+                buscarCliente();
+            }
+
             @Override
-            public void removeUpdate(DocumentEvent e) { buscarCliente(); }
+            public void removeUpdate(DocumentEvent e) {
+                buscarCliente();
+            }
+
             @Override
-            public void changedUpdate(DocumentEvent e) { buscarCliente(); }
+            public void changedUpdate(DocumentEvent e) {
+                buscarCliente();
+            }
 
             private void buscarCliente() {
-                String cedula = jTextFieldCC.getText().trim();
-                if (!cedula.isEmpty() && clienteDAO != null) {
-                    try {
-                        if (clienteDAO.existeCliente(cedula)) {
-                            String[] datos = clienteDAO.obtenerDatosCliente(cedula);
-                            if (datos != null) {
-                                jTextFieldRecibimosDe.setText(datos[0]); // Nombre
-                                jTextFieldDireccion.setText(datos[1]);   // Direccion
+
+                String cedula =
+                        jTextFieldCC.getText().trim();
+
+                if (cedula.isEmpty()) {
+                    return;
+                }
+
+                if (clienteDAO == null) {
+                    return;
+                }
+
+                try {
+
+                    if (clienteDAO.existeCliente(cedula)) {
+
+                        String[] datos =
+                                clienteDAO.obtenerDatosCliente(cedula);
+
+                        if (datos != null) {
+
+                            // Nombre
+                            if (datos.length > 0 &&
+                                datos[0] != null) {
+
+                                jTextFieldRecibimosDe
+                                        .setText(datos[0]);
+                            }
+
+                            // Dirección
+                            if (datos.length > 1 &&
+                                datos[1] != null) {
+
+                                jTextFieldDireccion
+                                        .setText(datos[1]);
                             }
                         }
-                    } catch (DAOException ex) {
-                        System.out.println("Error al buscar cliente: " + ex.getMessage());
                     }
+
+                } catch (DAOException ex) {
+
+                    System.out.println(
+                            "Error al buscar cliente: "
+                            + ex.getMessage()
+                    );
                 }
             }
         });
     }
-
         
     /**
      * This method is called from within the constructor to initialize the form.
