@@ -201,14 +201,14 @@ public class Bienvenida extends javax.swing.JFrame {
         lblDescripcion.setText("Disfruta lo mejor, rápido y delicioso ♥");
         getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 220, -1));
 
-        Usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/per_isnet-general-use.png"))); // NOI18N
+        Usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/per_isnet-general-use.png"))); // NOI18N
         getContentPane().add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 10)); // NOI18N
         jLabel3.setText("¡Qué bueno verte de nuevo!");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 170, 30));
 
-        Regi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/registre.png"))); // NOI18N
+        Regi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/registre.png"))); // NOI18N
         getContentPane().add(Regi, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 60, 60));
 
         Iniciarsesion.setBackground(new java.awt.Color(255, 225, 0));
