@@ -110,6 +110,7 @@ public class Bienvenida extends javax.swing.JFrame {
             Registrarse.getWidth() + 10,
             Registrarse.getHeight() + 10
         );
+        
     }
 
     @Override
@@ -119,6 +120,29 @@ public class Bienvenida extends javax.swing.JFrame {
             Registrarse.getY() + 5,
             Registrarse.getWidth() - 10,
             Registrarse.getHeight() - 10
+        );
+    }
+});
+    
+    Empleado.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mouseEntered(java.awt.event.MouseEvent evt) {
+        Empleado.setBounds(
+            Empleado.getX() - 5,
+            Empleado.getY() - 5,
+            Empleado.getWidth() + 10,
+            Empleado.getHeight() + 10
+        );
+        
+    }
+
+    @Override
+    public void mouseExited(java.awt.event.MouseEvent evt) {
+        Empleado.setBounds(
+            Empleado.getX() + 5,
+            Empleado.getY() + 5,
+            Empleado.getWidth() - 10,
+            Empleado.getHeight() - 10
         );
     }
 });
@@ -175,6 +199,7 @@ public class Bienvenida extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         Registrarse = new javax.swing.JButton();
+        Empleado = new javax.swing.JButton();
         lblFondo = new javax.swing.JLabel();
 
         jLabel2.setText("FastSanck");
@@ -190,33 +215,33 @@ public class Bienvenida extends javax.swing.JFrame {
         logo13.setMaximumSize(new java.awt.Dimension(320, 200));
         logo13.setMinimumSize(new java.awt.Dimension(320, 200));
         logo13.setPreferredSize(new java.awt.Dimension(120, 80));
-        getContentPane().add(logo13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 140, 120));
+        getContentPane().add(logo13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 140, 120));
 
         lblBienvenido.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblBienvenido.setForeground(new java.awt.Color(51, 35, 15));
         lblBienvenido.setText("¡Bienvenido!");
-        getContentPane().add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 230, -1));
+        getContentPane().add(lblBienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 230, -1));
 
         lblDescripcion.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         lblDescripcion.setText("Disfruta lo mejor, rápido y delicioso ♥");
-        getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 220, -1));
+        getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 220, -1));
 
         Usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/per_isnet-general-use.png"))); // NOI18N
-        getContentPane().add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, 40));
+        getContentPane().add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 10)); // NOI18N
         jLabel3.setText("¡Qué bueno verte de nuevo!");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 170, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 170, 30));
 
         Regi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/registre.png"))); // NOI18N
-        getContentPane().add(Regi, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 60, 60));
+        getContentPane().add(Regi, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 190, 60, 60));
 
         Iniciarsesion.setBackground(new java.awt.Color(255, 225, 0));
         Iniciarsesion.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         Iniciarsesion.setText("Iniciar Sesión");
         Iniciarsesion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 0), 2));
         Iniciarsesion.addActionListener(this::IniciarsesionActionPerformed);
-        getContentPane().add(Iniciarsesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 160, 120));
+        getContentPane().add(Iniciarsesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 160, 120));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 180, -1));
 
         jLabel4.setBackground(new java.awt.Color(255, 102, 0));
@@ -229,14 +254,21 @@ public class Bienvenida extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel8.setText("¡Crea tu cuenta y disfruta!");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 160, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 160, -1));
 
         Registrarse.setBackground(new java.awt.Color(255, 153, 51));
         Registrarse.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
         Registrarse.setText("Registrar");
         Registrarse.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 0), 2));
         Registrarse.addActionListener(this::RegistrarseActionPerformed);
-        getContentPane().add(Registrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 160, 120));
+        getContentPane().add(Registrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 160, 120));
+
+        Empleado.setBackground(new java.awt.Color(255, 51, 51));
+        Empleado.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
+        Empleado.setText("Registro de Empleado");
+        Empleado.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 51, 0), 2));
+        Empleado.addActionListener(this::EmpleadoActionPerformed);
+        getContentPane().add(Empleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 280, 70));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2026-09-05 at 11.01.51 PM.jpeg"))); // NOI18N
         getContentPane().add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 410));
@@ -257,6 +289,11 @@ public class Bienvenida extends javax.swing.JFrame {
        ventana.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_RegistrarseActionPerformed
+
+    private void EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EmpleadoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_EmpleadoActionPerformed
 
     /**
      * @param
@@ -292,6 +329,7 @@ public class Bienvenida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Empleado;
     private javax.swing.JButton Iniciarsesion;
     private javax.swing.JLabel Regi;
     private javax.swing.JButton Registrarse;
