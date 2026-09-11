@@ -39,9 +39,8 @@
     <Component class="javax.swing.JLabel" name="logo13">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagenes/logo13.jpeg"/>
+          <Image iconType="3" name="/Imagenes/WhatsApp Image 2026-09-10 at 18.51.51 (1)_isnet-general-use.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[320, 200]"/>
         </Property>
@@ -54,7 +53,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="170" y="70" width="120" height="80"/>
+          <AbsoluteConstraints x="170" y="40" width="140" height="120"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -89,11 +88,13 @@
     </Component>
     <Component class="javax.swing.JLabel" name="Usuario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Presentacion/per_isnet-general-use.png"/>
+        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="120" y="220" width="50" height="30"/>
+          <AbsoluteConstraints x="120" y="210" width="-1" height="40"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -135,11 +136,13 @@
     </Component>
     <Component class="javax.swing.JLabel" name="Regi">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel4"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Presentacion/registre.png"/>
+        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="310" y="220" width="60" height="30"/>
+          <AbsoluteConstraints x="310" y="200" width="60" height="60"/>
         </Constraint>
       </Constraints>
     </Component>
