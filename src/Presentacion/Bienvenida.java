@@ -186,11 +186,11 @@ public class Bienvenida extends javax.swing.JFrame {
         setIconImages(null);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        logo13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2026-09-10 at 18.51.51 (1)_isnet-general-use.png"))); // NOI18N
+        logo13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2026-09-10 at 18.51.51 (1).jpeg"))); // NOI18N
         logo13.setMaximumSize(new java.awt.Dimension(320, 200));
         logo13.setMinimumSize(new java.awt.Dimension(320, 200));
         logo13.setPreferredSize(new java.awt.Dimension(120, 80));
-        getContentPane().add(logo13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 140, 120));
+        getContentPane().add(logo13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 140, 120));
 
         lblBienvenido.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblBienvenido.setForeground(new java.awt.Color(51, 35, 15));
