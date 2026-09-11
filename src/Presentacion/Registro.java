@@ -132,10 +132,12 @@ public class Registro extends javax.swing.JFrame {
         jDesktopPane1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 170, -1));
 
         txtDireccion.setText(" ");
+        txtDireccion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtDireccion.addActionListener(this::txtDireccionActionPerformed);
         jDesktopPane1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 170, -1));
 
         txtUsuario.setText(" ");
+        txtUsuario.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jDesktopPane1.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 170, -1));
 
         jCheckBox1.setText("Mostrar contraseña");
@@ -145,7 +147,11 @@ public class Registro extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         jLabel9.setText("Vuelva a escribir la contraseña:");
         jDesktopPane1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 220, 20));
+
+        txtContra.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jDesktopPane1.add(txtContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 170, -1));
+
+        txtConfirmarContra.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jDesktopPane1.add(txtConfirmarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, 170, -1));
 
         txtConfirmar.setText("Mostrar contraseña");
@@ -153,12 +159,14 @@ public class Registro extends javax.swing.JFrame {
         jDesktopPane1.add(txtConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, -1, -1));
 
         Registrar.setText("Registrar");
+        Registrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         Registrar.addActionListener(this::RegistrarActionPerformed);
-        jDesktopPane1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, -1, -1));
+        jDesktopPane1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 80, -1));
 
         jButton1.setText("Iniciar sesión");
+        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jButton1.addActionListener(this::jButton1ActionPerformed);
-        jDesktopPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
+        jDesktopPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, 100, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2026-09-05 at 11.01.51 PM.jpeg"))); // NOI18N
         jDesktopPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 460, 440));
