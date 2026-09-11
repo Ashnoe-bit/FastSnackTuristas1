@@ -119,7 +119,6 @@ this.addWindowListener(new java.awt.event.WindowAdapter() {
         jButton1.addActionListener(this::jButton1ActionPerformed);
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 100, -1));
 
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Olvidé mi contraseña");
         jButton2.setBorder(null);
         jButton2.addActionListener(this::jButton2ActionPerformed);
