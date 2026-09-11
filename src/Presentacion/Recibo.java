@@ -20,9 +20,9 @@ import utilidades.DAOException;
  *
  * @author usuario
  */
-public class FastSnackRecibo extends javax.swing.JFrame {
+public class Recibo extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FastSnackRecibo.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Recibo.class.getName());
 
     private Pedido pedido;
     private ClienteDAOImpl clienteDAO;
@@ -31,7 +31,7 @@ public class FastSnackRecibo extends javax.swing.JFrame {
      * Creates new form FastSnackRecibo
      */
     
-        public FastSnackRecibo() {
+        public Recibo() {
         initComponents();
         this.setLocationRelativeTo(null);
         configurarTabla();
@@ -42,7 +42,7 @@ public class FastSnackRecibo extends javax.swing.JFrame {
         }
     }
 
-    public FastSnackRecibo(Pedido pedido, String cliente, String cedula, String totalSinIva, String iva, String descuento, String total) {
+    public Recibo(Pedido pedido, String cliente, String cedula, String totalSinIva, String iva, String descuento, String total) {
         this.pedido = pedido;
         initComponents();
         this.setLocationRelativeTo(null);
@@ -511,7 +511,7 @@ public class FastSnackRecibo extends javax.swing.JFrame {
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
-        java.awt.EventQueue.invokeLater(() -> new FastSnackRecibo().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Recibo().setVisible(true));
     }
 
 
