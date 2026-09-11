@@ -39,15 +39,15 @@ public class Bienvenida extends javax.swing.JFrame {
     this.setLocationRelativeTo(null);
 
     logo13.setIcon(
-        cargarImagen("/imagenes/logo13.png", 280, 140)
+        cargarImagen("/imagenes/logo13.png", 115, 115)
     );
     
     Usuario.setIcon(
-    cargarImagen("/imagenes/usuario.png", 70, 70)
+    cargarImagen("/imagenes/usuario.png", 40, 40)
     );
     
     Regi.setIcon(
-    cargarImagen("/imagenes/registro.png", 70, 70)
+    cargarImagen("/imagenes/registro.png", 40, 40)
     );
     
     Iniciarsesion.setFocusPainted(false);
@@ -186,7 +186,7 @@ public class Bienvenida extends javax.swing.JFrame {
         setIconImages(null);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        logo13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2026-09-10 at 18.51.51 (1)_isnet-general-use.png"))); // NOI18N
+        logo13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo13.png"))); // NOI18N
         logo13.setMaximumSize(new java.awt.Dimension(320, 200));
         logo13.setMinimumSize(new java.awt.Dimension(320, 200));
         logo13.setPreferredSize(new java.awt.Dimension(120, 80));
@@ -201,14 +201,14 @@ public class Bienvenida extends javax.swing.JFrame {
         lblDescripcion.setText("Disfruta lo mejor, rápido y delicioso ♥");
         getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 220, -1));
 
-        Usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/per_isnet-general-use.png"))); // NOI18N
+        Usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/usuario.png"))); // NOI18N
         getContentPane().add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, 40));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Emoji", 0, 10)); // NOI18N
         jLabel3.setText("¡Qué bueno verte de nuevo!");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 170, 30));
 
-        Regi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/registre.png"))); // NOI18N
+        Regi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/registro.png"))); // NOI18N
         getContentPane().add(Regi, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 60, 60));
 
         Iniciarsesion.setBackground(new java.awt.Color(255, 225, 0));

@@ -49,7 +49,7 @@ this.addWindowListener(new java.awt.event.WindowAdapter() {
         jButton2.setOpaque(false);
         jButton2.setBorderPainted(false);
         jButton2.setFocusPainted(false);
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(30,30,30));
         
         aplicarEstiloMaterial(txtUsuario);
         aplicarEstiloMaterial(txtContra);
@@ -66,7 +66,7 @@ this.addWindowListener(new java.awt.event.WindowAdapter() {
     }
     
     private void aplicarEstiloMaterial(javax.swing.JTextField campo) {
-        campo.setBackground(new Color(30, 30, 30));
+        campo.setBackground(new Color(255, 255, 255));
         campo.setForeground(Color.WHITE);
         campo.setCaretColor(Color.WHITE);
         campo.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY));
