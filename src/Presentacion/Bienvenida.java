@@ -55,6 +55,49 @@ public class Bienvenida extends javax.swing.JFrame {
 
     Registrarse.setFocusPainted(false);
     Registrarse.setBorderPainted(true);
+    
+    Iniciarsesion.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mouseEntered(java.awt.event.MouseEvent evt) {
+        Iniciarsesion.setBounds(
+            Iniciarsesion.getX() - 5,
+            Iniciarsesion.getY() - 5,
+            Iniciarsesion.getWidth() + 10,
+            Iniciarsesion.getHeight() + 10
+        );
+    }
+
+    @Override
+    public void mouseExited(java.awt.event.MouseEvent evt) {
+        Iniciarsesion.setBounds(
+            Iniciarsesion.getX() + 5,
+            Iniciarsesion.getY() + 5,
+            Iniciarsesion.getWidth() - 10,
+            Iniciarsesion.getHeight() - 10
+        );
+    }
+});
+    Registrarse.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mouseEntered(java.awt.event.MouseEvent evt) {
+        Registrarse.setBounds(
+            Registrarse.getX() - 5,
+            Registrarse.getY() - 5,
+            Registrarse.getWidth() + 10,
+            Registrarse.getHeight() + 10
+        );
+    }
+
+    @Override
+    public void mouseExited(java.awt.event.MouseEvent evt) {
+        Registrarse.setBounds(
+            Registrarse.getX() + 5,
+            Registrarse.getY() + 5,
+            Registrarse.getWidth() - 10,
+            Registrarse.getHeight() - 10
+        );
+    }
+});
     }
 
     /**
@@ -111,12 +154,11 @@ public class Bienvenida extends javax.swing.JFrame {
         setIconImages(null);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        logo13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/logo13.jpeg"))); // NOI18N
-        logo13.setText("jLabel1");
+        logo13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/WhatsApp Image 2026-09-10 at 18.51.51 (1)_isnet-general-use.png"))); // NOI18N
         logo13.setMaximumSize(new java.awt.Dimension(320, 200));
         logo13.setMinimumSize(new java.awt.Dimension(320, 200));
         logo13.setPreferredSize(new java.awt.Dimension(120, 80));
-        getContentPane().add(logo13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 120, 80));
+        getContentPane().add(logo13, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 140, 120));
 
         lblBienvenido.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblBienvenido.setForeground(new java.awt.Color(51, 35, 15));
@@ -127,8 +169,8 @@ public class Bienvenida extends javax.swing.JFrame {
         lblDescripcion.setText("Disfruta lo mejor, rápido y delicioso ♥");
         getContentPane().add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 340, 220, -1));
 
-        Usuario.setText("jLabel1");
-        getContentPane().add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 50, 30));
+        Usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/per_isnet-general-use.png"))); // NOI18N
+        getContentPane().add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, 40));
 
         Iniciarsesion.setBackground(new java.awt.Color(255, 225, 0));
         Iniciarsesion.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
@@ -140,8 +182,8 @@ public class Bienvenida extends javax.swing.JFrame {
         jLabel3.setText("jLabel1");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 50, 30));
 
-        Regi.setText("jLabel4");
-        getContentPane().add(Regi, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 60, 30));
+        Regi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/registre.png"))); // NOI18N
+        getContentPane().add(Regi, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 200, 60, 60));
 
         Registrarse.setBackground(new java.awt.Color(255, 153, 51));
         Registrarse.setFont(new java.awt.Font("Modern No. 20", 1, 18)); // NOI18N
@@ -197,7 +239,10 @@ public class Bienvenida extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Bienvenida().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> {
+    Bienvenida ventana = new Bienvenida();
+    ventana.setVisible(true);
+});
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
