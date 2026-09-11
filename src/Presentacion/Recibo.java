@@ -4,6 +4,17 @@
  */
 package Presentacion;
 
+import Modelo.Pedido;
+import Modelo.ItemPedido;
+import DAO.ClienteDAOImpl;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.table.DefaultTableModel;
+import utilidades.DAOException;
+
 /**
  *
  * @author Maily
@@ -19,6 +30,12 @@ public class Recibo extends javax.swing.JFrame {
         initComponents();
     }
 
+    Recibo(Pedido pedido, String cliente, String cedula, String totalSinIva, String iva, String descuento, String total) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,11 +75,18 @@ public class Recibo extends javax.swing.JFrame {
         jTextField24 = new javax.swing.JTextField();
         jTextField25 = new javax.swing.JTextField();
         jTextField26 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField1.addActionListener(this::jTextField1ActionPerformed);
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 34, -1));
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 40, -1));
+
+        jTextField3.addActionListener(this::jTextField3ActionPerformed);
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 40, -1));
 
         jTextField4.setBackground(new java.awt.Color(0, 51, 153));
@@ -91,7 +115,7 @@ public class Recibo extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 153));
         jLabel2.setText("RECIBO");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 20, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
 
         jTextField8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextField8.setText("Por $");
@@ -152,6 +176,18 @@ public class Recibo extends javax.swing.JFrame {
         getContentPane().add(jTextField25, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 50, -1));
         getContentPane().add(jTextField26, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 150, -1));
 
+        jButton2.setText("Imprimir");
+        jButton2.addActionListener(this::jButton2ActionPerformed);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
+
+        jButton1.setText("Guardar datos");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
+
+        jButton3.setText("jButton3");
+        jButton3.addActionListener(this::jButton3ActionPerformed);
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -162,6 +198,88 @@ public class Recibo extends javax.swing.JFrame {
     private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField15ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "🖨️ Imprimiendo...\n\nTotal: " + jLabel23.getText());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+               // TODO add your handling code here:
+       String correo = jTextField4.getText().trim();
+        String nombre = jTextField6.getText().trim();
+        String direccion = jTextField5.getText().trim();
+
+        if (correo.isEmpty() || nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                "Por favor ingrese al menos Correo y Nombre del cliente",
+                "Datos faltantes",
+                JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (!correo.contains("@") || !correo.contains(".")) {
+            JOptionPane.showMessageDialog(this,
+                "El correo no tiene un formato válido (ejemplo: usuario@gmail.com)",
+                "Correo inválido",
+                JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            if (clienteDAO != null && !clienteDAO.existeCliente(correo)) {
+                String[] partes = nombre.split(" ");
+                String nombres = partes[0];
+                String apellidos = partes.length > 1 ? partes[1] : "Cliente";
+
+                clienteDAO.guardarCliente(nombres, apellidos, correo, direccion);
+                JOptionPane.showMessageDialog(this,
+                    """
+                    \u2705 Cliente guardado exitosamente
+                    
+                    \ud83d\udce7 Correo: """ + correo + "\n" +
+                    "👤 Nombre: " + nombre + "\n" +
+                    "📍 Dirección: " + direccion);
+            } else {
+                JOptionPane.showMessageDialog(this, """
+                                                    \u2139\ufe0f El cliente ya existe en la base de datos
+                                                    Los datos fueron cargados autom\u00e1ticamente.""");
+            }
+        } catch (HeadlessException | DAOException ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+                DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
+        m.setRowCount(0);
+
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField8.setText("");
+
+        jLabel21.setText("$0.00");
+        jLabel22.setText("$0.00");
+        jLabel23.setText("$0.00");
+
+        Producto producto = new Producto();
+        producto.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,6 +307,9 @@ public class Recibo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
