@@ -1,85 +1,133 @@
 # FastSnackTuristas
 
-FastSnack - Sistema de Comida Rapida - Grupo: Las Turistas
+Sistema de Comida Rápida
 
-Aplicacion de escritorio desarrollada en Java (Swing) con conexion a base de datos MySQL, para la gestion de un local de comida rapida. Permite el registro e inicio de sesion de clientes y empleados, la realizacion de pedidos desde un menu interactivo, y la administracion mediante un panel para empleados.
-Tecnologias utilizadas.
+Grupo: Las Turistas
 
-    Lenguaje: Java
-    Interfaz grafica: Swing (JFrame)
-    Base de datos: MySQL y Aiven
-    Conexion: JDBC (driver mysql-connector-j)
-    Entorno de desarrollo: NetBeans vinculado con git
+Problemática
 
+Los locales de comida rápida necesitan una forma organizada y eficiente de gestionar a sus clientes, productos y pedidos. Cuando estos procesos se realizan manualmente, pueden presentarse problemas como errores al registrar los pedidos, pérdida de información, dificultades para calcular correctamente los valores de una compra y poca organización de los datos.
+
+A partir de esta necesidad se desarrolló FastSnack, una aplicación de escritorio creada en Java que permite gestionar de manera sencilla el proceso de compra de comida rápida. El sistema permite registrar usuarios, iniciar sesión, seleccionar productos, realizar pedidos y generar los comprobantes correspondientes. Además, cuenta con un acceso para empleados que permite administrar y consultar la información relacionada con las compras.
+
+La aplicación busca mejorar la organización del local, reducir errores durante el proceso de venta y facilitar el manejo de la información mediante una conexión con una base de datos MySQL.
+
+Tecnologías utilizadas
+Lenguaje de programación: Java.
+Interfaz gráfica: Java Swing mediante formularios JFrame.
+Base de datos: MySQL y Aiven.
+Conexión: JDBC.
+Driver: mysql-connector-j.
+Entorno de desarrollo: NetBeans.
+Control de versiones: Git.
 Funcionalidades
 
-    Registro de usuarios diferenciado: el cliente debe usar su correo, colocar su nombre y apellido, crear un usuario con una contraseña.
-    Inicio de sesion con usuario y contrasena.
-    Clientes: menu interactivo con imagenes, carrito de compras, calculo de subtotal, IVA (15%), envio y total, numero de pedido automatico, metodo de pago, personalizacion del pedido.
-    Empleados: panel con dos pestanas (Factura y recibo).
-    Toda la informacion de usuarios y pedidos se guarda en MySQL.
+FastSnack cuenta con diferentes funcionalidades para gestionar el proceso de compra:
 
-Estructura del proyecto (separacion por capas)
+Pantalla de bienvenida: permite al usuario acceder a las diferentes opciones de la aplicación.
+Registro: permite crear una cuenta ingresando nombre, apellido, correo, usuario y contraseña.
+Inicio de sesión: permite que los clientes ingresen utilizando sus credenciales.
+Inicio de sesión de empleado: permite que el personal autorizado acceda a las funciones correspondientes.
+Menú: muestra los productos disponibles para que el cliente pueda seleccionar los que desea comprar.
+Carrito de compras: permite agregar productos y revisar los elementos seleccionados.
+Personalización del pedido: permite agregar indicaciones o modificaciones al pedido.
+Cálculo del pedido: realiza el cálculo del subtotal, IVA del 15 %, envío y total.
+Número de pedido: permite identificar cada compra mediante un número automático.
+Método de pago: permite seleccionar el método de pago correspondiente.
+Factura: muestra la información de la compra de forma organizada.
+Recibo: genera un comprobante con los datos principales del pedido.
+Base de datos: almacena la información de usuarios, productos y pedidos en MySQL.
+Estructura del proyecto
 
-    Modelo: clases de datos (Persona, Usuario, Producto, ItemPedido, Sesion, Catalogo) y la excepcion personalizada (DocumentoInvalidoException).
-    BD: acceso a la base de datos (Conexion, UsuarioDAO, PedidoDAO, ProductoDAO).
-    Vista: formularios de la interfaz (FrmBienvenida, FrmRegistro, FrmLogin, FrmMenu, FrmEmpleado, FrmRecibo, FrmFactura).
+El proyecto está organizado mediante una separación por capas, lo que permite mantener el código ordenado y facilitar su mantenimiento.
 
-Conceptos tecnicos aplicados
+Modelo
 
-    Patron Singleton: la clase Conexion tiene constructor privado y una unica instancia (getInstancia()), centralizando la conexion a la base de datos.
-    Herencia y clase abstracta: la clase abstracta Persona define los datos comunes; Usuario hereda de ella (extends Persona) e implementa el metodo abstracto getTipoUsuario() (polimorfismo).
-    Manejo de excepciones: uso de try-catch en las operaciones de base de datos y una excepcion personalizada DocumentoInvalidoException que se lanza con throw.
-    Conexion JDBC con MySQL mediante el driver mysql-connector-j.
+Contiene las clases encargadas de representar los datos y objetos utilizados en el sistema:
 
-Como ejecutar el proyecto
+Persona: clase abstracta que contiene información común.
+Usuario: representa a los usuarios registrados y hereda de Persona.
+Producto: contiene la información de los productos.
+ItemPedido: representa cada producto incluido en un pedido.
+Sesion: mantiene la información relacionada con el usuario que inició sesión y el carrito.
+Catalogo: permite organizar los productos disponibles.
+DocumentoInvalidoException: excepción personalizada para controlar documentos que no cumplen las condiciones establecidas.
+BD
 
-    Crear la base de datos: ejecutar en MySQL Workbench el script fastfood.sql (crea la base fastfood con las tablas usuarios, pedidos y productos).
-    Configurar la conexion: en BD/Conexion.java, colocar el usuario y la contrasena de tu MySQL.
-    Agregar el driver: anadir el archivo mysql-connector-j.jar a las librerias del proyecto.
-    Colocar las imagenes en el paquete Imagenes.
-    Ejecutar la clase Main.
+Contiene las clases encargadas de la conexión y comunicación con la base de datos:
+
+Conexion: establece la conexión con MySQL.
+UsuarioDAO: administra las operaciones relacionadas con los usuarios.
+ProductoDAO: administra la información de los productos.
+PedidoDAO: administra el registro y consulta de los pedidos.
+Vista
+
+Contiene las ventanas y formularios que utiliza el usuario:
+
+FrmBienvenida: pantalla de bienvenida.
+FrmRegistro: formulario para registrar usuarios.
+FrmLogin: inicio de sesión del cliente.
+FrmMenu: menú principal para seleccionar productos.
+FrmEmpleado: acceso y panel del empleado.
+FrmFactura: muestra la factura.
+FrmRecibo: muestra el recibo.
+
+La separación de estas capas permite que cada parte del programa tenga una función específica y evita concentrar todo el código en una sola clase.
+
+Conceptos técnicos aplicados
+
+Durante el desarrollo de FastSnack se aplicaron diferentes conceptos de programación orientada a objetos y conexión con bases de datos.
+
+Patrón Singleton:
+Se aplica en la clase Conexion, cuyo objetivo es controlar la creación de la conexión con la base de datos. La clase posee un constructor privado y una única instancia que puede obtenerse mediante getInstancia(). Esto permite centralizar la conexión y evitar crear múltiples instancias innecesarias.
+
+Herencia:
+La clase Usuario hereda de Persona mediante extends Persona. Esto permite reutilizar los atributos y métodos comunes definidos en la clase padre.
+
+Clase abstracta:
+Persona es una clase abstracta que contiene información común y define métodos que deben ser implementados por las clases que heredan de ella.
+
+Polimorfismo:
+Se utiliza cuando una clase hija puede implementar su propia versión de un método definido en la clase padre. En este proyecto, Usuario implementa el método getTipoUsuario() definido en Persona.
+
+Manejo de excepciones:
+Se utiliza try-catch para controlar errores que pueden producirse durante las operaciones con la base de datos y otras operaciones del sistema. Esto evita que la aplicación se cierre inesperadamente.
+
+Excepción personalizada:
+Se creó DocumentoInvalidoException para controlar específicamente los casos en los que un documento ingresado no cumple con el formato establecido.
+
+Throw:
+Se utiliza throw para lanzar manualmente una excepción cuando se detecta una situación que debe ser controlada por el programa.
+
+JDBC:
+JDBC permite establecer la comunicación entre Java y MySQL. Gracias a esta tecnología, la aplicación puede guardar, consultar y modificar información de la base de datos.
+
+Maven y dependencias:
+Maven permite administrar las dependencias utilizadas en el proyecto. Una de las principales es mysql-connector-j, que permite conectar Java con MySQL mediante JDBC.
+
+Separación por capas:
+La aplicación está dividida en Modelo, BD y Vista. Esta organización permite separar los datos, la conexión con la base de datos y la interfaz gráfica, haciendo que el proyecto sea más ordenado y fácil de mantener.
+
+Cómo se ejecutó el proyecto
+
+Para ejecutar el proyecto FastSnack se siguieron varios pasos.
+
+Primero, se creó la base de datos en MySQL y se ejecutó el script fastfood.sql, el cual contiene la estructura necesaria para almacenar la información de usuarios, productos y pedidos.
+
+Después, se configuró la conexión en la clase Conexion.java, colocando los datos correspondientes para acceder a la base de datos. También se configuró la dependencia mysql-connector-j mediante Maven para permitir la comunicación entre Java y MySQL.
+
+El proyecto fue desarrollado utilizando NetBeans y se trabajó con Git para el control de versiones y la colaboración entre los integrantes del grupo.
+
+Una vez configurada la base de datos y las dependencias, se ejecutó la clase principal Main. Al iniciar el programa aparece la pantalla de bienvenida, desde donde el usuario puede acceder al registro o al inicio de sesión.
+
+El cliente puede registrarse, iniciar sesión, ingresar al menú, seleccionar los productos que desea comprar, agregarlos al carrito, personalizar su pedido, seleccionar el método de pago y obtener la factura y el recibo correspondientes.
+
+Por otro lado, el empleado cuenta con su propio inicio de sesión y puede ingresar al panel correspondiente para consultar y gestionar la información relacionada con las facturas y recibos.
+
+Finalmente, toda la información generada durante el funcionamiento de la aplicación se almacena en la base de datos MySQL mediante la conexión JDBC.
 
 Autoras
-Dayanna Maldonado, Scarleth Montiel, Milena Tómala, Maily Bacusoy, Jiang Jiamei y Ashley Navarro - Tercero de Informatica A
 
-Analisis tecnico (preguntas del trabajo)
-1. Patron de diseno Singleton
+Dayanna Maldonado, Scarleth Montiel, Milena Tómala, Maily Bacusoy, Jiang Jiamei y Ashley Navarro.
 
-Problema si varias clases crean multiples instancias de configuracion: se desperdiciarian recursos abriendo conexiones repetidas, podria haber configuraciones inconsistentes entre clases, y el mantenimiento seria complicado porque un cambio (como la contrasena) habria que hacerlo en muchos lugares.
-
-Como lo resuelve Singleton: garantiza una sola instancia y un punto de acceso global. En este proyecto, la clase Conexion centraliza la configuracion de la base de datos; con constructor privado e instancia unica, toda la aplicacion comparte la misma conexion.
-
-Escenarios reales: conexion a base de datos, configuracion global, registro de logs, o la sesion del usuario activo (en este proyecto, la clase Sesion comparte el usuario logueado y el carrito).
-
-Riesgos si se usa mal: puede volverse una variable global dificil de rastrear, complica las pruebas, y en entornos con multiples hilos podria crear instancias duplicadas si no se sincroniza.
-2. Clases abstractas e interfaces
-
-Cuando usar una clase abstracta: cuando varias clases comparten atributos y comportamiento comun y se quiere evitar repetir codigo, obligando ademas a implementar ciertos metodos. En el proyecto, Persona es abstracta y de ella hereda Usuario.
-
-Que heredar desde la clase abstracta: los atributos y metodos comunes (nombre, telefono y sus getters/setters). Los metodos que cambian en cada subclase se declaran abstractos.
-
-Cuando usar interfaz en lugar de clase abstracta: cuando solo se necesita definir un contrato sin jerarquia de herencia, o cuando una clase debe cumplir varios contratos (en Java se hereda de una sola clase pero se implementan varias interfaces).
-
-Ventajas de las interfaces en proyectos grandes: desacoplan el codigo, permiten cambiar implementaciones sin romper el resto, y facilitan las pruebas.
-3. Manejo de excepciones: try...catch y throw
-
-Funcion del try-catch: el try contiene codigo que puede fallar y el catch captura el error para manejarlo sin que el programa se cierre. En el proyecto se usa en todas las operaciones de base de datos.
-
-Diferencia entre catch y throw: catch atrapa y maneja un error que ya ocurrio; throw lanza deliberadamente una excepcion para indicar que algo salio mal.
-
-Cuando lanzar una excepcion personalizada: cuando el error es propio del dominio del problema. En el proyecto se creo DocumentoInvalidoException, que se lanza con throw cuando un documento no cumple el formato y se captura con try-catch.
-
-Problemas si no se controlan las excepciones: el programa se cerraria ante cualquier fallo, el usuario veria errores tecnicos, podrian perderse datos, y seria dificil depurar.
-4. Conexion Java + MySQL con Maven y dependencias
-
-Por que manejar dependencias automaticamente: garantiza la version correcta de cada libreria y sus dependencias sin buscarlas manualmente.
-
-Si cada desarrollador instala librerias a mano: habria versiones distintas, errores de "en mi maquina funciona", perdida de tiempo y proyectos dificiles de compartir.
-
-Funcion del pom.xml: es el archivo de configuracion de Maven; define el proyecto, la version de Java y las dependencias que se descargan automaticamente.
-
-Dependencia para conectar Java con MySQL: mysql-connector-j (groupId com.mysql), el driver JDBC de MySQL.
-5. Reflexion final
-
-Por que analizar el problema antes de elegir patron, estructura o tecnica: porque la tecnologia esta al servicio del problema. Analizar primero permite elegir la solucion mas simple y adecuada, ahorra tiempo y produce un sistema mantenible. En este proyecto, separar el codigo en capas desde el inicio permitio agregar funciones (productos nuevos, panel de empleado) sin desordenar el sistema.
+Tercero de Informática A
