@@ -7,30 +7,158 @@ package Presentacion;
 import Modelo.Pedido;
 import javax.swing.JOptionPane;
 
-public class Factura extends javax.swing.JFrame {
+/**
+ *
+ * @author Maily
+ */
+public final class Factura extends javax.swing.JFrame {
 
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Factura.class.getName());
 
-
-    private Pedido pedido;
-
+    /**
+     * Constructor por defecto
+     */
     public Factura() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        configurarEstadoInicial();
+        
+
     }
 
-    public Factura(Pedido pedido) {
-        this.pedido = pedido;
+    /**
+     * Constructor para recibir datos directamente desde el Menú/Pedido.
+     * Pasa los arreglos con la información seleccionada por el usuario.
+     * @param cliente
+     * @param ruc
+     * @param productos
+     * @param cantidades
+     * @param precios
+     */
+    public Factura(String cliente, String ruc, String[] productos, int[] cantidades, double[] precios) {
         initComponents();
-        this.setLocationRelativeTo(null);
-        cargarDatosFactura();
+        configurarEstadoInicial();
+        cargarDatosPedido(cliente, ruc, productos, cantidades, precios);
     }
 
-private void cargarDatosFactura() {
-    if (pedido == null || pedido.getItems().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "No hay productos en el pedido");
-        return;
+    private void configurarEstadoInicial() {
+        // Bloquear campos de totales y cabecera para evitar edición accidental
+         jButton1.addActionListener(new java.awt.event.ActionListener() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton1ActionPerformed(evt);
+        }
+    });
+         
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton3ActionPerformed(evt);
+        }
+    });
+
+    jButton2.addActionListener(new java.awt.event.ActionListener() {
+        @Override
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton2ActionPerformed(evt);
+        }
+    });
+        
+        jTextField39.setEditable(false); // Total Sin IVA
+        jTextField42.setEditable(false); // IVA
+        jTextField37.setEditable(false); // Total Final
+        
+        // Bloquear campos de la lista de detalles
+        javax.swing.JTextField[] detalles = {
+            jTextField17, jTextField18, jTextField19, jTextField20, jTextField16,
+            jTextField22, jTextField23, jTextField24, jTextField25, jTextField21,
+            jTextField31, jTextField28, jTextField29, jTextField30, jTextField26,
+            jTextField32, jTextField33, jTextField34, jTextField35, jTextField27
+        };
+        for (javax.swing.JTextField txt : detalles) {
+            txt.setEditable(false);
+        }
+
+        // Agregar listener para recalcular automáticamente al modificar el Descuento
+        jTextField44.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                calcularTotales();
+            }
+        });
     }
-}
+
+    /**
+     * Carga los datos recibidos y los posiciona en las filas correspondientes.
+     * @param cliente
+     * @param ruc
+     * @param productos
+     * @param cantidades
+     * @param precios
+     */
+    public void cargarDatosPedido(String cliente, String ruc, String[] productos, int[] cantidades, double[] precios) {
+        jTextField8.setText(cliente);
+        jTextField2.setText(ruc);
+        
+        // Asignación por filas
+        javax.swing.JTextField[] txtCant = {jTextField17, jTextField18, jTextField19, jTextField20, jTextField16};
+        javax.swing.JTextField[] txtDesc = {jTextField22, jTextField23, jTextField24, jTextField25, jTextField21};
+        javax.swing.JTextField[] txtPUni = {jTextField31, jTextField28, jTextField29, jTextField30, jTextField26};
+        javax.swing.JTextField[] txtTot  = {jTextField32, jTextField33, jTextField34, jTextField35, jTextField27};
+
+        for (int i = 0; i < productos.length && i < 5; i++) {
+            if (productos[i] != null && !productos[i].isEmpty()) {
+                txtCant[i].setText(String.valueOf(cantidades[i]));
+                txtDesc[i].setText(productos[i]);
+                txtPUni[i].setText(String.format("%.2f", precios[i]));
+                
+                double totalFila = cantidades[i] * precios[i];
+                txtTot[i].setText(String.format("%.2f", totalFila));
+            }
+        }
+        
+        calcularTotales();
+    }
+
+    /**
+     * Realiza el cálculo del Subtotal, IVA (15%), Descuento y Total Final.
+     */
+    private void calcularTotales() {
+        javax.swing.JTextField[] txtTot = {jTextField32, jTextField33, jTextField34, jTextField35, jTextField27};
+        double subtotal = 0.0;
+
+        for (javax.swing.JTextField txt : txtTot) {
+            String val = txt.getText().replace(",", ".");
+            if (!val.isEmpty()) {
+                try {
+                    subtotal += Double.parseDouble(val);
+                } catch (NumberFormatException ignored) {}
+            }
+        }
+
+        // Obtener Descuento ingresado
+        double porcentajeDescuento = 0.0;
+        String descTexto = jTextField44.getText().trim().replace(",", ".");
+        if (!descTexto.isEmpty()) {
+            try {
+                porcentajeDescuento = Double.parseDouble(descTexto);
+            } catch (NumberFormatException e) {
+                porcentajeDescuento = 0.0;
+            }
+        }
+
+        double montoDescuento = subtotal * (porcentajeDescuento / 100.0);
+        double subtotalConDescuento = subtotal - montoDescuento;
+        double iva = subtotalConDescuento * 0.15; // IVA al 15%
+        double totalFinal = subtotalConDescuento + iva;
+
+        // Mostrar en la interfaz gráfica
+        jTextField39.setText(String.format("%.2f", subtotal));
+        jTextField42.setText(String.format("%.2f", iva));
+        jTextField37.setText(String.format("%.2f", totalFinal));
+    }
+
+    
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -84,7 +212,6 @@ private void cargarDatosFactura() {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -242,43 +369,75 @@ private void cargarDatosFactura() {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(102, 51, 0));
         jButton1.setText("Recibo");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(this::jButton1ActionPerformed);
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, 120, -1));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(102, 51, 0));
         jButton2.setText("Otro pedido");
-        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton2.addActionListener(this::jButton2ActionPerformed);
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 110, -1));
 
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(102, 51, 0));
         jButton3.setText("Cancelar pedido");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton3.addActionListener(this::jButton3ActionPerformed);
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 460, 130, -1));
-
-        jButton4.setText("Calcular");
-        jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton4.addActionListener(this::jButton4ActionPerformed);
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, 70, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+        // Botón "Recibo": Genera mensaje de confirmación/pantalla final
+        JOptionPane.showMessageDialog(this, "Factura emitida con éxito por un total de: $" + jTextField37.getText(), "Recibo Generado", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
+       // Botón "Otro pedido": Cierra esta ventana y permite volver a seleccionar
+       
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
+       // Botón "Cancelar pedido"
+      
+
     }//GEN-LAST:event_jTextField3ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+
+    Recibo ventanaRecibo = new Recibo();
+    ventanaRecibo.setVisible(true);
+    this.dispose();
+}
+    
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                        
+
+    int confirm = JOptionPane.showConfirmDialog(
+        this,
+        "¿Está seguro de cancelar el pedido?\nSi lo hace, se perderá todo el progreso.",
+        "Cancelar pedido",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.WARNING_MESSAGE
+    );
+
+    if (confirm == JOptionPane.YES_OPTION) {
+        new Producto().setVisible(true);
+        this.dispose();
+    }
+}
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                        
+
+    int confirm = JOptionPane.showConfirmDialog(
+        this,
+        "¿Está seguro de hacer otro pedido?\nSe borrará el registro actual.",
+        "Otro pedido",
+        JOptionPane.YES_NO_OPTION,
+        JOptionPane.WARNING_MESSAGE
+    );
+
+    if (confirm == JOptionPane.YES_OPTION) {
+        new Producto().setVisible(true);
+        this.dispose();
+    }
+}
+                                            
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
@@ -350,94 +509,33 @@ private void cargarDatosFactura() {
 
     private void jTextField43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField43ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextField43ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-    int confirm = JOptionPane.showConfirmDialog(
-        this,
-        "¿Seguro que deseas cancelar el pedido?",
-        "Cancelar pedido",
-        JOptionPane.YES_NO_OPTION
-    );
-
-    if (confirm == JOptionPane.YES_OPTION) {
-        new Producto().setVisible(true);
-        this.dispose();
-    }
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        int confirm = JOptionPane.showConfirmDialog(
-            this,
-            "¿Deseas agregar más productos a esta misma factura?",
-            "Otro pedido",
-            JOptionPane.YES_NO_OPTION
-        );
-
-        if (confirm == JOptionPane.YES_OPTION) {
-            ProductoConFactura ventanaProducto =
-                    new ProductoConFactura(pedido, this);
-
-            ventanaProducto.setVisible(true);
-            this.setVisible(false);
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-           int confirm;
-        confirm = JOptionPane.showConfirmDialog(this,
-                "¿Deseas agregar más productos a esta misma factura?",
-                "Otro pedido",
-                JOptionPane.YES_NO_OPTION);
     
-    if (confirm == JOptionPane.YES_OPTION) {
-        // Pasar el pedido actual a Productos para seguir agregando
-      ProductoConFactura ventanaProducto = new ProductoConFactura(pedido, this);
-        ventanaProducto.setVisible(true);
-        this.setVisible(false); // Factura se oculta, no se cierra
-    } else {
-        // Nueva factura limpia
-        new Producto().setVisible(true);
-        this.dispose();
-    }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        String cliente = jTextField8.getText();
-        String cedula = jTextField2.getText();
-        String totalSinIva = jTextField39.getText();
-        String iva = jTextField42.getText();
-        String descuento = jTextField44.getText();
-        String total = jTextField37.getText();
-
-        Recibo recibo = new Recibo(
-            pedido,
-            cliente,
-            cedula,
-            totalSinIva,
-            iva,
-            descuento,
-            total
-        );
-
-        recibo.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String args[]) {
+      try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
         java.awt.EventQueue.invokeLater(() -> new Factura().setVisible(true));
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -486,8 +584,8 @@ private void cargarDatosFactura() {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
- void actualizarPedido(Pedido nuevoPedido) {
-    this.pedido = nuevoPedido;
-    cargarDatosFactura();
-}
+
+    void actualizarPedido(Pedido pedidoActual) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -320,8 +320,9 @@ public class Registro extends javax.swing.JFrame {
         // Intentar guardar en la base de datos
         try {
             DAO.UsuarioDAO dao = DAO.UsuarioDAO.getInstance();
-            boolean guardado = dao.registrarUsuario(nombres, apellidos, correo, direccion, usuario, pass1);
-
+            boolean guardado = dao.registrarUsuario(
+                nombres, apellidos, correo, direccion, usuario, pass1
+            );
             if (guardado) {
                 JOptionPane.showMessageDialog(this, "¡Registro Exitoso!\nAhora puedes iniciar sesión.");
 
@@ -341,9 +342,14 @@ public class Registro extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Error: El usuario o correo ya existen.");
             }
-        } catch (HeadlessException | DAOException e) {
-            JOptionPane.showMessageDialog(this, "Error al registrar: " + e.getMessage());
-        }        // TODO add your handling code here:
+} catch (HeadlessException | DAOException e) {
+    JOptionPane.showMessageDialog(this,
+        "ERROR REAL:\n" + e.getMessage(),
+        "Error al registrar",
+        JOptionPane.ERROR_MESSAGE);
+
+    e.printStackTrace();
+}
     }//GEN-LAST:event_RegistrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
